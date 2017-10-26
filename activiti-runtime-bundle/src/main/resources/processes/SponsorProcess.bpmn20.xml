@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="SponsorPrcoess" name="Sponsor Prcoess" isExecutable="true">
+    <startEvent id="startEvent" />
+
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="createSponsor" />
+
+    <userTask id="createSponsor" name="Create Sponsor" activiti:assignee="admin" />
+
+    <sequenceFlow id="flow2" sourceRef="createSponsor" targetRef="validateSponsor" />
+
+    <userTask id="validateSponsor" name="Validate Sponsor" activiti:assignee="user" />
+
+    <sequenceFlow id="flow3" sourceRef="validateSponsor" targetRef="createInvoice" />
+
+    <serviceTask id="createInvoice" name="Create Invoice" />
+
+    <sequenceFlow id="flow4" sourceRef="createInvoice" targetRef="validateInvoice" />
+
+    <userTask id="validateInvoice" name="Valiate Invoice" activiti:assignee="admin" />
+
+    <sequenceFlow id="flow5" sourceRef="validateInvoice" targetRef="endEvent">
+
+    <endEvent id="endEvent" />
+
+  </process>
+</definitions>
