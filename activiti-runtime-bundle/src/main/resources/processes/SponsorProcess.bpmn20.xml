@@ -1,27 +1,51 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
   <process id="SponsorPrcoess" name="Sponsor Prcoess" isExecutable="true">
-    <startEvent id="startEvent" />
-
-    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="createSponsor" />
-
-    <userTask id="createSponsor" name="Create Sponsor" activiti:assignee="admin" />
-
-    <sequenceFlow id="flow2" sourceRef="createSponsor" targetRef="validateSponsor" />
-
-    <userTask id="validateSponsor" name="Validate Sponsor" activiti:assignee="user" />
-
-    <sequenceFlow id="flow3" sourceRef="validateSponsor" targetRef="createInvoice" />
-
-    <serviceTask id="createInvoice" name="Create Invoice" />
-
-    <sequenceFlow id="flow4" sourceRef="createInvoice" targetRef="validateInvoice" />
-
-    <userTask id="validateInvoice" name="Valiate Invoice" activiti:assignee="admin" />
-
-    <sequenceFlow id="flow5" sourceRef="validateInvoice" targetRef="endEvent">
-
-    <endEvent id="endEvent" />
-
+    <startEvent id="startEvent1"></startEvent>
+    <sequenceFlow id="sid-EC6F588E-985D-4446-8D3A-A6E491B97D79" sourceRef="startEvent1" targetRef="validateSponsor"></sequenceFlow>
+    <userTask id="validateSponsor" name="Validate Sponsor" activiti:assignee="user">
+    </userTask>
+    <sequenceFlow id="sid-D2F523C8-4FA6-46F5-8CDE-72655B33C15E" sourceRef="validateSponsor" targetRef="createInvoice"></sequenceFlow>
+    <userTask id="validateInvoice" name="Valiate Invoice" activiti:assignee="admin">
+    </userTask>
+    <sequenceFlow id="sid-FCE85571-0EF2-4A7E-8C3C-D664AD734491" sourceRef="createInvoice" targetRef="validateInvoice"></sequenceFlow>
+    <endEvent id="sid-3A3598DB-76D1-4A09-80D9-369392226DC3"></endEvent>
+    <sequenceFlow id="sid-1CA1F9B8-10D4-42CF-AAB8-6D980AD2706C" sourceRef="validateInvoice" targetRef="sid-3A3598DB-76D1-4A09-80D9-369392226DC3"></sequenceFlow>
+    <serviceTask id="createInvoice" name="Create Invoice" activiti:delegateExpression="${sponsorService.createInvoice(exection.getVariable(&quot;sponsorName&quot;))}"></serviceTask>
   </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_SponsorPrcoess">
+    <bpmndi:BPMNPlane bpmnElement="SponsorPrcoess" id="BPMNPlane_SponsorPrcoess">
+      <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="120.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="validateSponsor" id="BPMNShape_validateSponsor">
+        <omgdc:Bounds height="80.0" width="100.0" x="240.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="validateInvoice" id="BPMNShape_validateInvoice">
+        <omgdc:Bounds height="80.0" width="100.0" x="610.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-3A3598DB-76D1-4A09-80D9-369392226DC3" id="BPMNShape_sid-3A3598DB-76D1-4A09-80D9-369392226DC3">
+        <omgdc:Bounds height="28.0" width="28.0" x="775.0" y="164.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="createInvoice" id="BPMNShape_createInvoice">
+        <omgdc:Bounds height="80.0" width="100.0" x="425.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-D2F523C8-4FA6-46F5-8CDE-72655B33C15E" id="BPMNEdge_sid-D2F523C8-4FA6-46F5-8CDE-72655B33C15E">
+        <omgdi:waypoint x="340.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="425.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EC6F588E-985D-4446-8D3A-A6E491B97D79" id="BPMNEdge_sid-EC6F588E-985D-4446-8D3A-A6E491B97D79">
+        <omgdi:waypoint x="150.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="240.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-FCE85571-0EF2-4A7E-8C3C-D664AD734491" id="BPMNEdge_sid-FCE85571-0EF2-4A7E-8C3C-D664AD734491">
+        <omgdi:waypoint x="525.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-1CA1F9B8-10D4-42CF-AAB8-6D980AD2706C" id="BPMNEdge_sid-1CA1F9B8-10D4-42CF-AAB8-6D980AD2706C">
+        <omgdi:waypoint x="710.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="775.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </definitions>
