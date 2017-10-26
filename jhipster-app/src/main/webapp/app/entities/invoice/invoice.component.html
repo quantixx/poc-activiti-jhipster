@@ -18,6 +18,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Invoice Number</span></th>
+            <th><span>Sponsor Name</span></th>
             <th><span>Limit Payment Date</span></th>
             <th><span>Sub Total</span></th>
             <th><span>Vat Rate</span></th>
@@ -30,6 +31,7 @@
             <tr *ngFor="let invoice of invoices ;trackBy: trackId">
                 <td><a [routerLink]="['../invoice', invoice.id ]">{{invoice.id}}</a></td>
                 <td>{{invoice.invoiceNumber}}</td>
+                <td>{{invoice.sponsorName}}</td>
                 <td>{{invoice.limitPaymentDate | date:'mediumDate'}}</td>
                 <td>{{invoice.subTotal}}</td>
                 <td>{{invoice.vatRate}}</td>

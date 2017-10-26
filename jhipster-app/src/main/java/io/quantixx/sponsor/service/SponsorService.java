@@ -1,6 +1,7 @@
 package io.quantixx.sponsor.service;
 
 import io.quantixx.sponsor.domain.Sponsor;
+import io.quantixx.sponsor.repository.InvoiceRepository;
 import io.quantixx.sponsor.repository.SponsorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,11 @@ public class SponsorService {
     private final Logger log = LoggerFactory.getLogger(SponsorService.class);
 
     private final SponsorRepository sponsorRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    public SponsorService(SponsorRepository sponsorRepository) {
+    public SponsorService(SponsorRepository sponsorRepository, InvoiceRepository invoiceRepository) {
         this.sponsorRepository = sponsorRepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     /**
@@ -37,9 +40,9 @@ public class SponsorService {
     }
 
     /**
-     *  Get all the sponsors.
+     * Get all the sponsors.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public List<Sponsor> findAll() {
@@ -48,10 +51,10 @@ public class SponsorService {
     }
 
     /**
-     *  Get one sponsor by id.
+     * Get one sponsor by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public Sponsor findOne(Long id) {
@@ -60,12 +63,16 @@ public class SponsorService {
     }
 
     /**
-     *  Delete the  sponsor by id.
+     * Delete the  sponsor by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Sponsor : {}", id);
         sponsorRepository.delete(id);
+    }
+
+    public void createInvoice(String sponsorName) {
+
     }
 }

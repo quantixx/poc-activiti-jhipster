@@ -28,6 +28,9 @@ public class Invoice implements Serializable {
     @Column(name = "invoice_number", nullable = false)
     private String invoiceNumber;
 
+    @Column(name = "sponsor_name")
+    private String sponsorName;
+
     @Column(name = "limit_payment_date")
     private LocalDate limitPaymentDate;
 
@@ -63,6 +66,19 @@ public class Invoice implements Serializable {
 
     public void setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+    }
+
+    public String getSponsorName() {
+        return sponsorName;
+    }
+
+    public Invoice sponsorName(String sponsorName) {
+        this.sponsorName = sponsorName;
+        return this;
+    }
+
+    public void setSponsorName(String sponsorName) {
+        this.sponsorName = sponsorName;
     }
 
     public LocalDate getLimitPaymentDate() {
@@ -156,6 +172,7 @@ public class Invoice implements Serializable {
         return "Invoice{" +
             "id=" + getId() +
             ", invoiceNumber='" + getInvoiceNumber() + "'" +
+            ", sponsorName='" + getSponsorName() + "'" +
             ", limitPaymentDate='" + getLimitPaymentDate() + "'" +
             ", subTotal='" + getSubTotal() + "'" +
             ", vatRate='" + getVatRate() + "'" +

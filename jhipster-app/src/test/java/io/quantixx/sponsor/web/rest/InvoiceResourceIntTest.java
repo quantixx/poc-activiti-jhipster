@@ -44,6 +44,9 @@ public class InvoiceResourceIntTest {
     private static final String DEFAULT_INVOICE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_INVOICE_NUMBER = "BBBBBBBBBB";
 
+    private static final String DEFAULT_SPONSOR_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_SPONSOR_NAME = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_LIMIT_PAYMENT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_LIMIT_PAYMENT_DATE = LocalDate.now(ZoneId.systemDefault());
 
@@ -101,6 +104,7 @@ public class InvoiceResourceIntTest {
     public static Invoice createEntity(EntityManager em) {
         Invoice invoice = new Invoice()
             .invoiceNumber(DEFAULT_INVOICE_NUMBER)
+            .sponsorName(DEFAULT_SPONSOR_NAME)
             .limitPaymentDate(DEFAULT_LIMIT_PAYMENT_DATE)
             .subTotal(DEFAULT_SUB_TOTAL)
             .vatRate(DEFAULT_VAT_RATE)
@@ -130,6 +134,7 @@ public class InvoiceResourceIntTest {
         assertThat(invoiceList).hasSize(databaseSizeBeforeCreate + 1);
         Invoice testInvoice = invoiceList.get(invoiceList.size() - 1);
         assertThat(testInvoice.getInvoiceNumber()).isEqualTo(DEFAULT_INVOICE_NUMBER);
+        assertThat(testInvoice.getSponsorName()).isEqualTo(DEFAULT_SPONSOR_NAME);
         assertThat(testInvoice.getLimitPaymentDate()).isEqualTo(DEFAULT_LIMIT_PAYMENT_DATE);
         assertThat(testInvoice.getSubTotal()).isEqualTo(DEFAULT_SUB_TOTAL);
         assertThat(testInvoice.getVatRate()).isEqualTo(DEFAULT_VAT_RATE);
@@ -186,6 +191,7 @@ public class InvoiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(invoice.getId().intValue())))
             .andExpect(jsonPath("$.[*].invoiceNumber").value(hasItem(DEFAULT_INVOICE_NUMBER.toString())))
+            .andExpect(jsonPath("$.[*].sponsorName").value(hasItem(DEFAULT_SPONSOR_NAME.toString())))
             .andExpect(jsonPath("$.[*].limitPaymentDate").value(hasItem(DEFAULT_LIMIT_PAYMENT_DATE.toString())))
             .andExpect(jsonPath("$.[*].subTotal").value(hasItem(DEFAULT_SUB_TOTAL.doubleValue())))
             .andExpect(jsonPath("$.[*].vatRate").value(hasItem(DEFAULT_VAT_RATE.doubleValue())))
@@ -205,6 +211,7 @@ public class InvoiceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(invoice.getId().intValue()))
             .andExpect(jsonPath("$.invoiceNumber").value(DEFAULT_INVOICE_NUMBER.toString()))
+            .andExpect(jsonPath("$.sponsorName").value(DEFAULT_SPONSOR_NAME.toString()))
             .andExpect(jsonPath("$.limitPaymentDate").value(DEFAULT_LIMIT_PAYMENT_DATE.toString()))
             .andExpect(jsonPath("$.subTotal").value(DEFAULT_SUB_TOTAL.doubleValue()))
             .andExpect(jsonPath("$.vatRate").value(DEFAULT_VAT_RATE.doubleValue()))
@@ -232,6 +239,7 @@ public class InvoiceResourceIntTest {
         Invoice updatedInvoice = invoiceRepository.findOne(invoice.getId());
         updatedInvoice
             .invoiceNumber(UPDATED_INVOICE_NUMBER)
+            .sponsorName(UPDATED_SPONSOR_NAME)
             .limitPaymentDate(UPDATED_LIMIT_PAYMENT_DATE)
             .subTotal(UPDATED_SUB_TOTAL)
             .vatRate(UPDATED_VAT_RATE)
@@ -248,6 +256,7 @@ public class InvoiceResourceIntTest {
         assertThat(invoiceList).hasSize(databaseSizeBeforeUpdate);
         Invoice testInvoice = invoiceList.get(invoiceList.size() - 1);
         assertThat(testInvoice.getInvoiceNumber()).isEqualTo(UPDATED_INVOICE_NUMBER);
+        assertThat(testInvoice.getSponsorName()).isEqualTo(UPDATED_SPONSOR_NAME);
         assertThat(testInvoice.getLimitPaymentDate()).isEqualTo(UPDATED_LIMIT_PAYMENT_DATE);
         assertThat(testInvoice.getSubTotal()).isEqualTo(UPDATED_SUB_TOTAL);
         assertThat(testInvoice.getVatRate()).isEqualTo(UPDATED_VAT_RATE);

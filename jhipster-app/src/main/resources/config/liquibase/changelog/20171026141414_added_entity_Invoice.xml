@@ -25,6 +25,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="sponsor_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="limit_payment_date" type="date">
                 <constraints nullable="true" />
             </column>
