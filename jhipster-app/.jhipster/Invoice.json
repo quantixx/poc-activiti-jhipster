@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "invoiceNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "limitPaymentDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "subTotal",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "vatRate",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "vat",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20171026141414",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "invoice",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

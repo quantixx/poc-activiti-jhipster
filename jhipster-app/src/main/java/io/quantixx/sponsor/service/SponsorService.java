@@ -32,6 +32,7 @@ public class SponsorService {
      */
     public Sponsor save(Sponsor sponsor) {
         log.debug("Request to save Sponsor : {}", sponsor);
+        // Activiti call: Start process
         return sponsorRepository.save(sponsor);
     }
 

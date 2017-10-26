@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(io.quantixx.sponsor.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.quantixx.sponsor.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.quantixx.sponsor.domain.Sponsor.class.getName(), jcacheConfiguration);
+            cm.createCache(io.quantixx.sponsor.domain.Invoice.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
