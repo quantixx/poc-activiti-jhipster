@@ -442,7 +442,7 @@
         "frontchannelLogout" : false,
         "protocol" : "openid-connect",
         "attributes" : { },
-        "fullScopeAllowed" : false,
+        "fullScopeAllowed" : true,
         "nodeReRegistrationTimeout" : 0,
         "protocolMappers" : [ {
             "id" : "cdd59f8e-8c6f-4081-89cd-56e9b2e731ce",
