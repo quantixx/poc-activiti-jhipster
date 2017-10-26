@@ -1,0 +1,302 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Activiti RB REST API",
+		"_postman_id": "18c3d562-7b8c-da0a-b995-a0eaedf0f774",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "activiti-runtime-bundle",
+			"description": "",
+			"item": [
+				{
+					"name": "startProcess",
+					"request": {
+						"url": "http://localhost:8081/v1/process-instances",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"processDefinitionId\": \"SimpleProcess:1:4\",\n  \"variables\": {\n    \"firstName\": \"Paulo\",\n    \"lastName\": \"Silva\",\n    \"aget\": 25\n  },\n  \"commandType\":\"StartProcessInstanceCmd\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getProcessVariables",
+					"request": {
+						"url": "http://localhost:8081/v1/process-instances/{processInstanceId}/variables",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getTasks",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8081/v1/tasks?page=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getTask",
+					"request": {
+						"url": "http://localhost:8081/v1/tasks/{taskId}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "claimTask",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8081/v1/tasks/74/claim?assignee=user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"v1",
+								"tasks",
+								"74",
+								"claim"
+							],
+							"query": [
+								{
+									"key": "assignee",
+									"value": "user",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "completeTask",
+					"request": {
+						"url": "http://localhost:8081/v1/tasks/{taskId}/complete",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getProcessDefinitions",
+					"request": {
+						"url": "http://localhost:8081/v1/process-definitions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getProcessInstances",
+					"request": {
+						"url": "http://localhost:8081/v1/process-instances",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"description": "",
+			"item": [
+				{
+					"name": "getKeycloakToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var tokens=JSON.parse(responseBody); ",
+									"postman.setGlobalVariable(\"kcAccessToken\", tokens.access_token); "
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "web_app",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "user",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
