@@ -1,1 +1,820 @@
-{"swagger":"2.0","info":{"description":"sponsor API documentation","version":"0.0.1","title":"sponsor API","contact":{},"license":{}},"host":"localhost:9060","basePath":"/","tags":[{"name":"profile-info-resource","description":"Profile Info Resource"},{"name":"account-resource","description":"Account Resource"},{"name":"invoice-resource","description":"Invoice Resource"},{"name":"user-resource","description":"User Resource"},{"name":"sponsor-resource","description":"Sponsor Resource"}],"paths":{"/api/account":{"get":{"tags":["account-resource"],"summary":"getAccount","operationId":"getAccountUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/UserDTO"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/authenticate":{"get":{"tags":["account-resource"],"summary":"isAuthenticated","operationId":"isAuthenticatedUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"string"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/invoices":{"get":{"tags":["invoice-resource"],"summary":"getAllInvoices","operationId":"getAllInvoicesUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"$ref":"#/definitions/Invoice"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["invoice-resource"],"summary":"createInvoice","operationId":"createInvoiceUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"invoice","description":"invoice","required":true,"schema":{"$ref":"#/definitions/Invoice"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Invoice"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["invoice-resource"],"summary":"updateInvoice","operationId":"updateInvoiceUsingPUT","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"invoice","description":"invoice","required":true,"schema":{"$ref":"#/definitions/Invoice"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Invoice"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/invoices/{id}":{"get":{"tags":["invoice-resource"],"summary":"getInvoice","operationId":"getInvoiceUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Invoice"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["invoice-resource"],"summary":"deleteInvoice","operationId":"deleteInvoiceUsingDELETE","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK"},"204":{"description":"No Content"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"}}}},"/api/profile-info":{"get":{"tags":["profile-info-resource"],"summary":"getActiveProfiles","operationId":"getActiveProfilesUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ProfileInfoVM"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/sponsors":{"get":{"tags":["sponsor-resource"],"summary":"getAllSponsors","operationId":"getAllSponsorsUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"$ref":"#/definitions/Sponsor"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"post":{"tags":["sponsor-resource"],"summary":"createSponsor","operationId":"createSponsorUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"sponsor","description":"sponsor","required":true,"schema":{"$ref":"#/definitions/Sponsor"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Sponsor"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"put":{"tags":["sponsor-resource"],"summary":"updateSponsor","operationId":"updateSponsorUsingPUT","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"sponsor","description":"sponsor","required":true,"schema":{"$ref":"#/definitions/Sponsor"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Sponsor"}},"201":{"description":"Created"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/sponsors/{id}":{"get":{"tags":["sponsor-resource"],"summary":"getSponsor","operationId":"getSponsorUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/Sponsor"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}},"delete":{"tags":["sponsor-resource"],"summary":"deleteSponsor","operationId":"deleteSponsorUsingDELETE","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"id","in":"path","description":"id","required":true,"type":"integer","format":"int64"}],"responses":{"200":{"description":"OK"},"204":{"description":"No Content"},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"}}}},"/api/users":{"get":{"tags":["user-resource"],"summary":"getAllUsers","operationId":"getAllUsersUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"page","in":"query","description":"Page number of the requested page","required":false,"type":"integer","format":"int32"},{"name":"size","in":"query","description":"Size of a page","required":false,"type":"integer","format":"int32"},{"name":"sort","in":"query","description":"Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.","required":false,"type":"array","items":{"type":"string"},"collectionFormat":"multi"}],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"$ref":"#/definitions/UserDTO"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/users/authorities":{"get":{"tags":["user-resource"],"summary":"getAuthorities","operationId":"getAuthoritiesUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"type":"array","items":{"type":"string"}}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}},"/api/users/{login}":{"get":{"tags":["user-resource"],"summary":"getUser","operationId":"getUserUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"login","in":"path","description":"login","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/UserDTO"}},"401":{"description":"Unauthorized"},"403":{"description":"Forbidden"},"404":{"description":"Not Found"}}}}},"definitions":{"Invoice":{"type":"object","required":["invoiceNumber"],"properties":{"id":{"type":"integer","format":"int64"},"invoiceNumber":{"type":"string"},"limitPaymentDate":{"type":"string","format":"date"},"sponsorName":{"type":"string"},"subTotal":{"type":"number","format":"float"},"total":{"type":"number","format":"float"},"vat":{"type":"number","format":"float"},"vatRate":{"type":"number","format":"float"}}},"ProfileInfoVM":{"type":"object","properties":{"activeProfiles":{"type":"array","items":{"type":"string"}},"ribbonEnv":{"type":"string"}}},"Sponsor":{"type":"object","required":["companyName"],"properties":{"additionalInformation":{"type":"string"},"businessIdentification":{"type":"string"},"companyName":{"type":"string"},"id":{"type":"integer","format":"int64"},"phoneNumber":{"type":"string"}}},"UserDTO":{"type":"object","required":["login"],"properties":{"activated":{"type":"boolean"},"authorities":{"type":"array","items":{"type":"string"}},"createdBy":{"type":"string"},"createdDate":{"type":"string","format":"date-time"},"email":{"type":"string","minLength":5,"maxLength":100},"firstName":{"type":"string","minLength":0,"maxLength":50},"id":{"type":"integer","format":"int64"},"imageUrl":{"type":"string","minLength":0,"maxLength":256},"langKey":{"type":"string","minLength":2,"maxLength":6},"lastModifiedBy":{"type":"string"},"lastModifiedDate":{"type":"string","format":"date-time"},"lastName":{"type":"string","minLength":0,"maxLength":50},"login":{"type":"string","minLength":1,"maxLength":50,"pattern":"^[_'.@A-Za-z0-9-]*$"}}}}}
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "sponsor API documentation",
+    "version": "0.0.1",
+    "title": "sponsor API",
+    "contact": {},
+    "license": {}
+  },
+  "host": "localhost:9060",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "profile-info-resource",
+      "description": "Profile Info Resource"
+    },
+    {
+      "name": "account-resource",
+      "description": "Account Resource"
+    },
+    {
+      "name": "invoice-resource",
+      "description": "Invoice Resource"
+    },
+    {
+      "name": "user-resource",
+      "description": "User Resource"
+    },
+    {
+      "name": "sponsor-resource",
+      "description": "Sponsor Resource"
+    }
+  ],
+  "paths": {
+    "/api/account": {
+      "get": {
+        "tags": [
+          "account-resource"
+        ],
+        "summary": "getAccount",
+        "operationId": "getAccountUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDTO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/authenticate": {
+      "get": {
+        "tags": [
+          "account-resource"
+        ],
+        "summary": "isAuthenticated",
+        "operationId": "isAuthenticatedUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/invoices": {
+      "get": {
+        "tags": [
+          "invoice-resource"
+        ],
+        "summary": "getAllInvoices",
+        "operationId": "getAllInvoicesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Invoice"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "invoice-resource"
+        ],
+        "summary": "createInvoice",
+        "operationId": "createInvoiceUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "invoice",
+            "description": "invoice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "invoice-resource"
+        ],
+        "summary": "updateInvoice",
+        "operationId": "updateInvoiceUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "invoice",
+            "description": "invoice",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/invoices/{id}": {
+      "get": {
+        "tags": [
+          "invoice-resource"
+        ],
+        "summary": "getInvoice",
+        "operationId": "getInvoiceUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "invoice-resource"
+        ],
+        "summary": "deleteInvoice",
+        "operationId": "deleteInvoiceUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/profile-info": {
+      "get": {
+        "tags": [
+          "profile-info-resource"
+        ],
+        "summary": "getActiveProfiles",
+        "operationId": "getActiveProfilesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProfileInfoVM"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/sponsors": {
+      "get": {
+        "tags": [
+          "sponsor-resource"
+        ],
+        "summary": "getAllSponsors",
+        "operationId": "getAllSponsorsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sponsor"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "sponsor-resource"
+        ],
+        "summary": "createSponsor",
+        "operationId": "createSponsorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "sponsor",
+            "description": "sponsor",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sponsor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sponsor"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "sponsor-resource"
+        ],
+        "summary": "updateSponsor",
+        "operationId": "updateSponsorUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "sponsor",
+            "description": "sponsor",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sponsor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sponsor"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/sponsors/{id}": {
+      "get": {
+        "tags": [
+          "sponsor-resource"
+        ],
+        "summary": "getSponsor",
+        "operationId": "getSponsorUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Sponsor"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "sponsor-resource"
+        ],
+        "summary": "deleteSponsor",
+        "operationId": "deleteSponsorUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "user-resource"
+        ],
+        "summary": "getAllUsers",
+        "operationId": "getAllUsersUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number of the requested page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Size of a page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserDTO"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/users/authorities": {
+      "get": {
+        "tags": [
+          "user-resource"
+        ],
+        "summary": "getAuthorities",
+        "operationId": "getAuthoritiesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/users/{login}": {
+      "get": {
+        "tags": [
+          "user-resource"
+        ],
+        "summary": "getUser",
+        "operationId": "getUserUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "description": "login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDTO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Invoice": {
+      "type": "object",
+      "required": [
+        "invoiceNumber"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "invoiceNumber": {
+          "type": "string"
+        },
+        "limitPaymentDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "sponsorName": {
+          "type": "string"
+        },
+        "subTotal": {
+          "type": "number",
+          "format": "float"
+        },
+        "total": {
+          "type": "number",
+          "format": "float"
+        },
+        "vat": {
+          "type": "number",
+          "format": "float"
+        },
+        "vatRate": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "ProfileInfoVM": {
+      "type": "object",
+      "properties": {
+        "activeProfiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ribbonEnv": {
+          "type": "string"
+        }
+      }
+    },
+    "Sponsor": {
+      "type": "object",
+      "required": [
+        "companyName"
+      ],
+      "properties": {
+        "additionalInformation": {
+          "type": "string"
+        },
+        "businessIdentification": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "phoneNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDTO": {
+      "type": "object",
+      "required": [
+        "login"
+      ],
+      "properties": {
+        "activated": {
+          "type": "boolean"
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 100
+        },
+        "firstName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "imageUrl": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 256
+        },
+        "langKey": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 6
+        },
+        "lastModifiedBy": {
+          "type": "string"
+        },
+        "lastModifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "login": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[_'.@A-Za-z0-9-]*$"
+        }
+      }
+    }
+  }
+}
