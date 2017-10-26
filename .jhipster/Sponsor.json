@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "companyName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "businessIdentification",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "additionalInformation",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171026103628",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "sponsor",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}
