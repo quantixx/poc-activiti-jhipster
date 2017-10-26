@@ -1,0 +1,43 @@
+{
+  "_embedded": {
+    "taskList": [
+      {
+        "id": "14",
+        "name": "Perform action",
+        "createdDate": 1509034494227,
+        "priority": 50,
+        "processDefinitionId": "SimpleProcess:1:4",
+        "processInstanceId": "6",
+        "status": "CREATED",
+        "_links": {
+          "self": {
+            "href": "http://activiti-cloud-sso-idm-kub:30080/rb-my-app/v1/tasks/{taskId}",
+            "templated": true
+          },
+          "claim": {
+            "href": "http://activiti-cloud-sso-idm-kub:30080/rb-my-app/v1/tasks/{taskId}/claim",
+            "templated": true
+          },
+          "processInstance": {
+            "href": "http://activiti-cloud-sso-idm-kub:30080/rb-my-app/v1/process-instances/{processInstanceId}",
+            "templated": true
+          },
+          "home": {
+            "href": "http://activiti-cloud-sso-idm-kub:30080/rb-my-app/v1"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://activiti-cloud-sso-idm-kub:30080/rb-my-app/v1/tasks?page=0&size=10"
+    }
+  },
+  "page": {
+    "size": 10,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 0
+  }
+}
