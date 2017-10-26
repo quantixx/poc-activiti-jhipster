@@ -22,7 +22,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20171026103628",
+    "changelogDate": "20171026134145",
     "dto": "no",
     "service": "serviceClass",
     "entityTableName": "sponsor",

@@ -26,15 +26,12 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:sponsor;DB_CLOSE_DELAY=-1
+        url: jdbc:postgresql://localhost:5432/sponsor
         username: sponsor
         password:
-    h2:
-        console:
-            enabled: false
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true

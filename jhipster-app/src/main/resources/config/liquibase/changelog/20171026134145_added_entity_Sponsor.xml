@@ -16,7 +16,7 @@
     <!--
         Added the entity Sponsor.
     -->
-    <changeSet id="20171026103628-1" author="jhipster">
+    <changeSet id="20171026134145-1" author="jhipster">
         <createTable tableName="sponsor">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
