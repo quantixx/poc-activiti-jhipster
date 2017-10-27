@@ -2,10 +2,7 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
   <process id="SponsorPrcoess" name="Sponsor Prcoess" isExecutable="true">
     <startEvent id="startEvent1"></startEvent>
-    <sequenceFlow id="sid-EC6F588E-985D-4446-8D3A-A6E491B97D79" sourceRef="startEvent1" targetRef="validateSponsor"></sequenceFlow>
-    <userTask id="validateSponsor" name="Validate Sponsor" activiti:assignee="user">
-    </userTask>
-    <sequenceFlow id="sid-D2F523C8-4FA6-46F5-8CDE-72655B33C15E" sourceRef="validateSponsor" targetRef="createInvoice"></sequenceFlow>
+    <sequenceFlow id="sid-EC6F588E-985D-4446-8D3A-A6E491B97D79" sourceRef="startEvent1" targetRef="createInvoice"></sequenceFlow>
     <userTask id="validateInvoice" name="Valiate Invoice" activiti:assignee="admin">
     </userTask>
     <sequenceFlow id="sid-FCE85571-0EF2-4A7E-8C3C-D664AD734491" sourceRef="createInvoice" targetRef="validateInvoice"></sequenceFlow>
@@ -17,9 +14,6 @@
     <bpmndi:BPMNPlane bpmnElement="SponsorPrcoess" id="BPMNPlane_SponsorPrcoess">
       <bpmndi:BPMNShape bpmnElement="startEvent1" id="BPMNShape_startEvent1">
         <omgdc:Bounds height="30.0" width="30.0" x="120.0" y="163.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="validateSponsor" id="BPMNShape_validateSponsor">
-        <omgdc:Bounds height="80.0" width="100.0" x="240.0" y="138.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="validateInvoice" id="BPMNShape_validateInvoice">
         <omgdc:Bounds height="80.0" width="100.0" x="610.0" y="138.0"></omgdc:Bounds>
