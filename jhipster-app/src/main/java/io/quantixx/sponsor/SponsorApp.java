@@ -21,7 +21,10 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-@ComponentScan
+@ComponentScan( excludeFilters = {
+    @ComponentScan.Filter(io.quantixx.sponsor.client.ExcludeFromComponentScan.class)
+})
+@org.springframework.cloud.netflix.feign.EnableFeignClients
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 public class SponsorApp {
