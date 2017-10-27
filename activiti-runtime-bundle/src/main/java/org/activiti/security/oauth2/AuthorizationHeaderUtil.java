@@ -10,7 +10,7 @@ public class AuthorizationHeaderUtil {
         SimpleKeycloakAccount details =
             (SimpleKeycloakAccount) SecurityContextHolder.getContext().getAuthentication().getDetails();
 
-        return String.format("%s %s", details.getKeycloakSecurityContext().getToken().getType(), details.getKeycloakSecurityContext().getToken().getAccessTokenHash());
+        return String.format("%s %s", details.getKeycloakSecurityContext().getToken().getType(), details.getKeycloakSecurityContext().getTokenString());
 
         // OAuth2AuthenticationDetails details =
         //     (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
