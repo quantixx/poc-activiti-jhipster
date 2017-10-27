@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "invoiceNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sponsorName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "limitPaymentDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "subTotal",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "vatRate",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "vat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20171027122954",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "invoice",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no",
+    "microserviceName": "sponsor",
+    "searchEngine": false
+}

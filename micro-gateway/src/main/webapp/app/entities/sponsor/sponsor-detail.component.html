@@ -1,0 +1,37 @@
+
+<div *ngIf="sponsor">
+    <h2><span>Sponsor</span> {{sponsor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Sponsor Name</span></dt>
+        <dd>
+            <span>{{sponsor.sponsorName}}</span>
+        </dd>
+        <dt><span>Business Identification</span></dt>
+        <dd>
+            <span>{{sponsor.businessIdentification}}</span>
+        </dd>
+        <dt><span>Phone Number</span></dt>
+        <dd>
+            <span>{{sponsor.phoneNumber}}</span>
+        </dd>
+        <dt><span>Additional Information</span></dt>
+        <dd>
+            <span>{{sponsor.additionalInformation}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sponsor/'+ sponsor.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

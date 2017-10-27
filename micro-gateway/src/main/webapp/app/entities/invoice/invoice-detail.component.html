@@ -1,0 +1,49 @@
+
+<div *ngIf="invoice">
+    <h2><span>Invoice</span> {{invoice.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Invoice Number</span></dt>
+        <dd>
+            <span>{{invoice.invoiceNumber}}</span>
+        </dd>
+        <dt><span>Sponsor Name</span></dt>
+        <dd>
+            <span>{{invoice.sponsorName}}</span>
+        </dd>
+        <dt><span>Limit Payment Date</span></dt>
+        <dd>
+            <span>{{invoice.limitPaymentDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Sub Total</span></dt>
+        <dd>
+            <span>{{invoice.subTotal}}</span>
+        </dd>
+        <dt><span>Vat Rate</span></dt>
+        <dd>
+            <span>{{invoice.vatRate}}</span>
+        </dd>
+        <dt><span>Vat</span></dt>
+        <dd>
+            <span>{{invoice.vat}}</span>
+        </dd>
+        <dt><span>Total</span></dt>
+        <dd>
+            <span>{{invoice.total}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'invoice/'+ invoice.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

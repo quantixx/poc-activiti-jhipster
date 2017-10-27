@@ -1,17 +1,15 @@
 package org.activiti.cloud.runtime;
 
 
-import org.activiti.client.ExcludeFromComponentScan;
 import org.activiti.cloud.starter.configuration.ActivitiRuntimeBundle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@ComponentScan(excludeFilters = {
-        @ComponentScan.Filter(ExcludeFromComponentScan.class)
-})
-@EnableFeignClients
+// @ComponentScan(excludeFilters = {
+//         @ComponentScan.Filter(ExcludeFromComponentScan.class)
+// })
+// @EnableFeignClients
 @SpringBootApplication
 @ActivitiRuntimeBundle
 public class Application {
