@@ -34,7 +34,7 @@ public class SponsorService {
         log.debug("Request to save Sponsor : {}", sponsor);
         // Activiti call: Start process
         StartProcessInstanceCmd process = new StartProcessInstanceCmd();
-        process.setProcessDefinitionId("SponsorPrcoess:1:db008162-bb15-11e7-bdea-9e7ccbc1d3ea");
+        process.setProcessDefinitionId("SponsorPrcoess:1:c64bff5c-bb26-11e7-bbce-9e7ccbc1d3ea");
         process.setCommandType("StartProcessInstanceCmd");
         process.setVariables(null);
         log.debug("startProcessUsingPOST : {}", process);

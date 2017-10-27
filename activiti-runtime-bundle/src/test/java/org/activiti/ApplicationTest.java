@@ -1,4 +1,4 @@
-package org.activiti.cloud.runtime;
+package org.activiti;
 
 import org.activiti.Application;
 import org.junit.Assert;
