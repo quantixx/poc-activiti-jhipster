@@ -11,7 +11,7 @@
     <sequenceFlow id="sid-FCE85571-0EF2-4A7E-8C3C-D664AD734491" sourceRef="createInvoice" targetRef="validateInvoice"></sequenceFlow>
     <endEvent id="sid-3A3598DB-76D1-4A09-80D9-369392226DC3"></endEvent>
     <sequenceFlow id="sid-1CA1F9B8-10D4-42CF-AAB8-6D980AD2706C" sourceRef="validateInvoice" targetRef="sid-3A3598DB-76D1-4A09-80D9-369392226DC3"></sequenceFlow>
-    <serviceTask id="createInvoice" name="Create Invoice" activiti:delegateExpression="${sponsorService.createInvoice(exection.getVariable(&quot;sponsorName&quot;))}"></serviceTask>
+    <serviceTask id="createInvoice" name="Create Invoice" activiti:expression="#{sponsorService.createInvoice(execution.getVariables())}"></serviceTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_SponsorPrcoess">
     <bpmndi:BPMNPlane bpmnElement="SponsorPrcoess" id="BPMNPlane_SponsorPrcoess">
