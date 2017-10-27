@@ -1,0 +1,3099 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Api Documentation",
+        "version": "1.0",
+        "title": "Api Documentation",
+        "termsOfService": "urn:tos",
+        "contact": {},
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "host": "localhost:8081",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "process-instance-controller-impl",
+            "description": "Process Instance Controller Impl"
+        },
+        {
+            "name": "process-instance-variable-controller-impl",
+            "description": "Process Instance Variable Controller Impl"
+        },
+        {
+            "name": "home-controller-impl",
+            "description": "Home Controller Impl"
+        },
+        {
+            "name": "process-definition-controller-impl",
+            "description": "Process Definition Controller Impl"
+        },
+        {
+            "name": "task-variable-controller-impl",
+            "description": "Task Variable Controller Impl"
+        },
+        {
+            "name": "process-definition-meta-controller-impl",
+            "description": "Process Definition Meta Controller Impl"
+        },
+        {
+            "name": "process-instance-tasks-controller-impl",
+            "description": "Process Instance Tasks Controller Impl"
+        },
+        {
+            "name": "task-controller-impl",
+            "description": "Task Controller Impl"
+        }
+    ],
+    "paths": {
+        "/v1/": {
+            "get": {
+                "tags": [
+                    "home-controller-impl"
+                ],
+                "summary": "getHomeInfo",
+                "operationId": "getHomeInfoUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions": {
+            "get": {
+                "tags": [
+                    "process-definition-controller-impl"
+                ],
+                "summary": "getProcessDefinitions",
+                "operationId": "getProcessDefinitionsUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«ProcessDefinitionResource»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions/{id}": {
+            "get": {
+                "tags": [
+                    "process-definition-controller-impl"
+                ],
+                "summary": "getProcessDefinition",
+                "operationId": "getProcessDefinitionUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ProcessDefinitionResource"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions/{id}/json": {
+            "get": {
+                "tags": [
+                    "process-definition-controller-impl"
+                ],
+                "summary": "getBpmnModel",
+                "operationId": "getBpmnModelUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions/{id}/meta": {
+            "get": {
+                "tags": [
+                    "process-definition-meta-controller-impl"
+                ],
+                "summary": "getProcessDefinitionMetadata",
+                "operationId": "getProcessDefinitionMetadataUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ProcessDefinitionMetaResource"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions/{id}/svg": {
+            "get": {
+                "tags": [
+                    "process-definition-controller-impl"
+                ],
+                "summary": "getProcessDiagram",
+                "operationId": "getProcessDiagramUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "image/svg+xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-definitions/{id}/xml": {
+            "get": {
+                "tags": [
+                    "process-definition-controller-impl"
+                ],
+                "summary": "getProcessModel",
+                "operationId": "getProcessModelUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "getProcessInstances",
+                "operationId": "getProcessInstancesUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«ProcessInstanceResource»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "startProcess",
+                "operationId": "startProcessUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/StartProcessInstanceCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«ProcessInstance»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/signal": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingHEAD",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "options": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingOPTIONS",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "sendSignal",
+                "operationId": "sendSignalUsingPATCH",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cmd",
+                        "description": "cmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignalProcessInstancesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "getProcessInstanceById",
+                "operationId": "getProcessInstanceByIdUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«ProcessInstance»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}/activate": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingHEAD",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "options": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingOPTIONS",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "activate",
+                "operationId": "activateUsingPATCH",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}/suspend": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingHEAD",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "options": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingOPTIONS",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "suspend",
+                "operationId": "suspendUsingPATCH",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}/svg": {
+            "get": {
+                "tags": [
+                    "process-instance-controller-impl"
+                ],
+                "summary": "getProcessDiagram",
+                "operationId": "getProcessDiagramUsingGET_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "image/svg+xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}/tasks": {
+            "get": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "head": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingHEAD",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "options": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingOPTIONS",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "process-instance-tasks-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingPATCH",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/v1/process-instances/{processInstanceId}/variables": {
+            "get": {
+                "tags": [
+                    "process-instance-variable-controller-impl"
+                ],
+                "summary": "getVariables",
+                "operationId": "getVariablesUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "processInstanceId",
+                        "in": "path",
+                        "description": "processInstanceId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Map«string,object»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks": {
+            "get": {
+                "tags": [
+                    "task-controller-impl"
+                ],
+                "summary": "getTasks",
+                "operationId": "getTasksUsingGET_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PagedResources«TaskResource»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}": {
+            "get": {
+                "tags": [
+                    "task-controller-impl"
+                ],
+                "summary": "getTaskById",
+                "operationId": "getTaskByIdUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Task»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}/claim": {
+            "post": {
+                "tags": [
+                    "task-controller-impl"
+                ],
+                "summary": "claimTask",
+                "operationId": "claimTaskUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Task»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}/complete": {
+            "post": {
+                "tags": [
+                    "task-controller-impl"
+                ],
+                "summary": "completeTask",
+                "operationId": "completeTaskUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "completeTaskCmd",
+                        "description": "completeTaskCmd",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CompleteTaskCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}/release": {
+            "post": {
+                "tags": [
+                    "task-controller-impl"
+                ],
+                "summary": "releaseTask",
+                "operationId": "releaseTaskUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Task»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}/variables/": {
+            "get": {
+                "tags": [
+                    "task-variable-controller-impl"
+                ],
+                "summary": "getVariables",
+                "operationId": "getVariablesUsingGET_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Map«string,object»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "task-variable-controller-impl"
+                ],
+                "summary": "setVariables",
+                "operationId": "setVariablesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "setTaskVariablesCmd",
+                        "description": "setTaskVariablesCmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SetTaskVariablesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/v1/tasks/{taskId}/variables/local": {
+            "get": {
+                "tags": [
+                    "task-variable-controller-impl"
+                ],
+                "summary": "getVariablesLocal",
+                "operationId": "getVariablesLocalUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Resource«Map«string,object»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "task-variable-controller-impl"
+                ],
+                "summary": "setVariablesLocal",
+                "operationId": "setVariablesLocalUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/hal+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "path",
+                        "description": "taskId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "setTaskVariablesCmd",
+                        "description": "setTaskVariablesCmd",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SetTaskVariablesCmd"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AnnotatedElement": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Annotation"
+                    }
+                },
+                "declaredAnnotations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Annotation"
+                    }
+                }
+            }
+        },
+        "AnnotatedMember": {
+            "type": "object",
+            "properties": {
+                "allAnnotations": {
+                    "$ref": "#/definitions/AnnotationMap"
+                },
+                "annotated": {
+                    "$ref": "#/definitions/AnnotatedElement"
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "genericType": {
+                    "$ref": "#/definitions/Type"
+                },
+                "member": {
+                    "$ref": "#/definitions/Member"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "public": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "typeContext": {
+                    "$ref": "#/definitions/TypeResolutionContext"
+                }
+            }
+        },
+        "Annotation": {
+            "type": "object"
+        },
+        "AnnotationMap": {
+            "type": "object"
+        },
+        "CompleteTaskCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "taskId": {
+                    "type": "string"
+                },
+                "outputVariables": {
+                    "type": "object"
+                }
+            }
+        },
+        "JavaType": {
+            "type": "object",
+            "properties": {
+                "abstract": {
+                    "type": "boolean"
+                },
+                "arrayType": {
+                    "type": "boolean"
+                },
+                "bindings": {
+                    "$ref": "#/definitions/TypeBindings"
+                },
+                "collectionLikeType": {
+                    "type": "boolean"
+                },
+                "concrete": {
+                    "type": "boolean"
+                },
+                "containerType": {
+                    "type": "boolean"
+                },
+                "contentType": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "contentTypeHandler": {
+                    "type": "object"
+                },
+                "contentValueHandler": {
+                    "type": "object"
+                },
+                "enumType": {
+                    "type": "boolean"
+                },
+                "erasedSignature": {
+                    "type": "string"
+                },
+                "final": {
+                    "type": "boolean"
+                },
+                "genericSignature": {
+                    "type": "string"
+                },
+                "interface": {
+                    "type": "boolean"
+                },
+                "interfaces": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JavaType"
+                    }
+                },
+                "javaLangObject": {
+                    "type": "boolean"
+                },
+                "keyType": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "mapLikeType": {
+                    "type": "boolean"
+                },
+                "primitive": {
+                    "type": "boolean"
+                },
+                "referenceType": {
+                    "type": "boolean"
+                },
+                "referencedType": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "superClass": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "throwable": {
+                    "type": "boolean"
+                },
+                "typeHandler": {
+                    "type": "object"
+                },
+                "typeName": {
+                    "type": "string"
+                },
+                "valueHandler": {
+                    "type": "object"
+                }
+            }
+        },
+        "JsonDeserializer«object»": {
+            "type": "object",
+            "properties": {
+                "cachable": {
+                    "type": "boolean"
+                },
+                "delegatee": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "emptyAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "emptyValue": {
+                    "type": "object"
+                },
+                "knownPropertyNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "nullAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "nullValue": {
+                    "type": "object"
+                },
+                "objectIdReader": {
+                    "$ref": "#/definitions/ObjectIdReader"
+                }
+            }
+        },
+        "Link": {
+            "type": "object",
+            "properties": {
+                "deprecation": {
+                    "type": "string"
+                },
+                "href": {
+                    "type": "string"
+                },
+                "hreflang": {
+                    "type": "string"
+                },
+                "media": {
+                    "type": "string"
+                },
+                "rel": {
+                    "type": "string"
+                },
+                "templated": {
+                    "type": "boolean"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "Member": {
+            "type": "object",
+            "properties": {
+                "modifiers": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "synthetic": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "MergeInfo": {
+            "type": "object",
+            "properties": {
+                "fromDefaults": {
+                    "type": "boolean"
+                },
+                "getter": {
+                    "$ref": "#/definitions/AnnotatedMember"
+                }
+            }
+        },
+        "NullValueProvider": {
+            "type": "object",
+            "properties": {
+                "nullAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                }
+            }
+        },
+        "ObjectIdGenerator«object»": {
+            "type": "object"
+        },
+        "ObjectIdInfo": {
+            "type": "object",
+            "properties": {
+                "alwaysAsId": {
+                    "type": "boolean"
+                },
+                "propertyName": {
+                    "$ref": "#/definitions/PropertyName"
+                }
+            }
+        },
+        "ObjectIdReader": {
+            "type": "object",
+            "properties": {
+                "deserializer": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "generator": {
+                    "$ref": "#/definitions/ObjectIdGenerator«object»"
+                },
+                "idProperty": {
+                    "$ref": "#/definitions/SettableBeanProperty"
+                },
+                "idType": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "propertyName": {
+                    "$ref": "#/definitions/PropertyName"
+                },
+                "resolver": {
+                    "$ref": "#/definitions/ObjectIdResolver"
+                }
+            }
+        },
+        "ObjectIdResolver": {
+            "type": "object"
+        },
+        "PageMetadata": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "totalElements": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "totalPages": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "PagedResources«ProcessDefinitionResource»": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionResource"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "page": {
+                    "$ref": "#/definitions/PageMetadata"
+                }
+            }
+        },
+        "PagedResources«ProcessInstanceResource»": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessInstanceResource"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "page": {
+                    "$ref": "#/definitions/PageMetadata"
+                }
+            }
+        },
+        "PagedResources«TaskResource»": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TaskResource"
+                    }
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "page": {
+                    "$ref": "#/definitions/PageMetadata"
+                }
+            }
+        },
+        "ProcessDefinitionMetaResource": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "serviceTasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionServiceTask"
+                    }
+                },
+                "userTasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionUserTask"
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "variables": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionVariable"
+                    }
+                },
+                "version": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "ProcessDefinitionResource": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "ProcessDefinitionServiceTask": {
+            "type": "object",
+            "properties": {
+                "cachable": {
+                    "type": "boolean"
+                },
+                "delegatee": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "emptyAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "emptyValue": {
+                    "type": "object"
+                },
+                "knownPropertyNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "nullAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "nullValue": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionServiceTask"
+                    }
+                },
+                "objectIdReader": {
+                    "$ref": "#/definitions/ObjectIdReader"
+                },
+                "taskImplementation": {
+                    "type": "string"
+                },
+                "taskName": {
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessDefinitionUserTask": {
+            "type": "object",
+            "properties": {
+                "cachable": {
+                    "type": "boolean"
+                },
+                "delegatee": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "emptyAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "emptyValue": {
+                    "type": "object"
+                },
+                "knownPropertyNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "nullAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "nullValue": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionUserTask"
+                    }
+                },
+                "objectIdReader": {
+                    "$ref": "#/definitions/ObjectIdReader"
+                },
+                "taskDocumentation": {
+                    "type": "string"
+                },
+                "taskName": {
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessDefinitionVariable": {
+            "type": "object",
+            "properties": {
+                "cachable": {
+                    "type": "boolean"
+                },
+                "delegatee": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "emptyAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "emptyValue": {
+                    "type": "object"
+                },
+                "knownPropertyNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "nullAccessPattern": {
+                    "type": "string",
+                    "enum": [
+                        "ALWAYS_NULL",
+                        "CONSTANT",
+                        "DYNAMIC"
+                    ]
+                },
+                "nullValue": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ProcessDefinitionVariable"
+                    }
+                },
+                "objectIdReader": {
+                    "$ref": "#/definitions/ObjectIdReader"
+                },
+                "variableName": {
+                    "type": "string"
+                },
+                "variableType": {
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessInstance": {
+            "type": "object",
+            "properties": {
+                "businessKey": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "initiator": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "ProcessInstanceResource": {
+            "type": "object",
+            "properties": {
+                "businessKey": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "initiator": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "PropertyMetadata": {
+            "type": "object",
+            "properties": {
+                "contentNulls": {
+                    "type": "string",
+                    "enum": [
+                        "SET",
+                        "SKIP",
+                        "FAIL",
+                        "AS_EMPTY",
+                        "DEFAULT"
+                    ]
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "index": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "mergeInfo": {
+                    "$ref": "#/definitions/MergeInfo"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "valueNulls": {
+                    "type": "string",
+                    "enum": [
+                        "SET",
+                        "SKIP",
+                        "FAIL",
+                        "AS_EMPTY",
+                        "DEFAULT"
+                    ]
+                }
+            }
+        },
+        "PropertyName": {
+            "type": "object",
+            "properties": {
+                "empty": {
+                    "type": "boolean"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "simpleName": {
+                    "type": "string"
+                }
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            }
+        },
+        "Resource«Map«string,object»»": {
+            "type": "object",
+            "properties": {
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                }
+            }
+        },
+        "Resource«ProcessInstance»": {
+            "type": "object",
+            "properties": {
+                "businessKey": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "initiator": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "Resource«Task»": {
+            "type": "object",
+            "properties": {
+                "assignee": {
+                    "type": "string"
+                },
+                "claimedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dueDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "parentTaskId": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "processInstanceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "SetTaskVariablesCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "taskId": {
+                    "type": "string"
+                },
+                "variables": {
+                    "type": "object"
+                }
+            }
+        },
+        "SettableBeanProperty": {
+            "type": "object",
+            "properties": {
+                "creatorIndex": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "fullName": {
+                    "$ref": "#/definitions/PropertyName"
+                },
+                "injectableValueId": {
+                    "type": "object"
+                },
+                "managedReferenceName": {
+                    "type": "string"
+                },
+                "member": {
+                    "$ref": "#/definitions/AnnotatedMember"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/PropertyMetadata"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nullValueProvider": {
+                    "$ref": "#/definitions/NullValueProvider"
+                },
+                "objectIdInfo": {
+                    "$ref": "#/definitions/ObjectIdInfo"
+                },
+                "propertyIndex": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "type": {
+                    "$ref": "#/definitions/JavaType"
+                },
+                "valueDeserializer": {
+                    "$ref": "#/definitions/JsonDeserializer«object»"
+                },
+                "valueTypeDeserializer": {
+                    "$ref": "#/definitions/TypeDeserializer"
+                },
+                "virtual": {
+                    "type": "boolean"
+                },
+                "wrapperName": {
+                    "$ref": "#/definitions/PropertyName"
+                }
+            }
+        },
+        "SignalProcessInstancesCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "inputVariables": {
+                    "type": "object"
+                }
+            }
+        },
+        "StartProcessInstanceCmd": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "variables": {
+                    "type": "object"
+                }
+            }
+        },
+        "Task": {
+            "type": "object",
+            "properties": {
+                "assignee": {
+                    "type": "string"
+                },
+                "claimedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dueDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "parentTaskId": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "processInstanceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "TaskResource": {
+            "type": "object",
+            "properties": {
+                "assignee": {
+                    "type": "string"
+                },
+                "claimedDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "createdDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dueDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Link"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "parentTaskId": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "processDefinitionId": {
+                    "type": "string"
+                },
+                "processInstanceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "Type": {
+            "type": "object",
+            "properties": {
+                "typeName": {
+                    "type": "string"
+                }
+            }
+        },
+        "TypeBindings": {
+            "type": "object",
+            "properties": {
+                "empty": {
+                    "type": "boolean"
+                },
+                "typeParameters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JavaType"
+                    }
+                }
+            }
+        },
+        "TypeDeserializer": {
+            "type": "object",
+            "properties": {
+                "propertyName": {
+                    "type": "string"
+                },
+                "typeIdResolver": {
+                    "$ref": "#/definitions/TypeIdResolver"
+                },
+                "typeInclusion": {
+                    "type": "string",
+                    "enum": [
+                        "PROPERTY",
+                        "WRAPPER_OBJECT",
+                        "WRAPPER_ARRAY",
+                        "EXTERNAL_PROPERTY",
+                        "EXISTING_PROPERTY"
+                    ]
+                }
+            }
+        },
+        "TypeIdResolver": {
+            "type": "object",
+            "properties": {
+                "descForKnownTypeIds": {
+                    "type": "string"
+                },
+                "mechanism": {
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "CLASS",
+                        "MINIMAL_CLASS",
+                        "NAME",
+                        "CUSTOM"
+                    ]
+                }
+            }
+        },
+        "TypeResolutionContext": {
+            "type": "object"
+        }
+    }
+}
