@@ -1,5 +1,6 @@
 package org.activiti.cloud.runtime;
 
+import org.activiti.Application;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

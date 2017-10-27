@@ -1,10 +1,9 @@
-package org.activiti.cloud.runtime;
+package org.activiti;
 
 
 import org.activiti.cloud.starter.configuration.ActivitiRuntimeBundle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 // @ComponentScan(excludeFilters = {
 //         @ComponentScan.Filter(ExcludeFromComponentScan.class)
