@@ -1,10 +1,13 @@
 package io.quantixx.sponsor.service;
 
+import io.quantixx.sponsor.client.activiti.api.V1ApiClient;
+import io.quantixx.sponsor.client.activiti.model.StartProcessInstanceCmd;
 import io.quantixx.sponsor.domain.Sponsor;
 import io.quantixx.sponsor.repository.InvoiceRepository;
 import io.quantixx.sponsor.repository.SponsorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,8 @@ public class SponsorService {
 
     private final SponsorRepository sponsorRepository;
     private final InvoiceRepository invoiceRepository;
+    @Autowired
+    private V1ApiClient activitiApi;
 
     public SponsorService(SponsorRepository sponsorRepository, InvoiceRepository invoiceRepository) {
         this.sponsorRepository = sponsorRepository;
@@ -36,6 +41,13 @@ public class SponsorService {
     public Sponsor save(Sponsor sponsor) {
         log.debug("Request to save Sponsor : {}", sponsor);
         // Activiti call: Start process
+        StartProcessInstanceCmd process = new StartProcessInstanceCmd();
+        process.setProcessDefinitionId("SponsorPrcoess:1:eff627f9-ba61-11e7-a881-9e7ccbc1d3ea");
+        process.setCommandType("StartProcessInstanceCmd");
+        process.setVariables(null);
+        log.debug("startProcessUsingPOST : {}", process);
+        activitiApi.startProcessUsingPOST(process);
+
         return sponsorRepository.save(sponsor);
     }
 

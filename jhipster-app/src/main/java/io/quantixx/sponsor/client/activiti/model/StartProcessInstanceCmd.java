@@ -1,10 +1,9 @@
 package io.quantixx.sponsor.client.activiti.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Objects;
 
 /**
  * StartProcessInstanceCmd
@@ -12,8 +11,6 @@ import io.swagger.annotations.ApiModelProperty;
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2017-10-27T10:41:34.309+01:00")
 
 public class StartProcessInstanceCmd   {
-  @JsonProperty("id")
-  private String id = null;
 
   @JsonProperty("processDefinitionId")
   private String processDefinitionId = null;
@@ -21,22 +18,11 @@ public class StartProcessInstanceCmd   {
   @JsonProperty("variables")
   private Object variables = null;
 
-  public StartProcessInstanceCmd id(String id) {
-    this.id = id;
+  @JsonProperty("commandType")
+  private String commandType = null;
+
+  public StartProcessInstanceCmd id() {
     return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public StartProcessInstanceCmd processDefinitionId(String processDefinitionId) {
@@ -76,7 +62,16 @@ public class StartProcessInstanceCmd   {
   }
 
 
-  @Override
+    @ApiModelProperty(value = "")
+    public String getCommandType() {
+        return commandType;
+    }
+
+    public void setCommandType(String commandType) {
+        this.commandType = commandType;
+    }
+
+    @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -85,24 +80,24 @@ public class StartProcessInstanceCmd   {
       return false;
     }
     StartProcessInstanceCmd startProcessInstanceCmd = (StartProcessInstanceCmd) o;
-    return Objects.equals(this.id, startProcessInstanceCmd.id) &&
+    return
         Objects.equals(this.processDefinitionId, startProcessInstanceCmd.processDefinitionId) &&
         Objects.equals(this.variables, startProcessInstanceCmd.variables);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, processDefinitionId, variables);
+    return Objects.hash(processDefinitionId, variables);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StartProcessInstanceCmd {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+
     sb.append("    processDefinitionId: ").append(toIndentedString(processDefinitionId)).append("\n");
     sb.append("    variables: ").append(toIndentedString(variables)).append("\n");
+    sb.append("    commandType: ").append(toIndentedString(commandType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
